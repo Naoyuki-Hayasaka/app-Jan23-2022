@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import Button from "./components/Button";
 
-const controller = new AbortController();
+// const controller = new AbortController();
+let controller;
 
 const AbortControllerMethod = () => {
   const [resources, setResources] = useState([]);
 
   const getPost = async () => {
+    controller = new AbortController();
     try {
       const posts = await axios.get(
         "https://jsonplaceholder.typicode.com/posts",
@@ -27,12 +29,13 @@ const AbortControllerMethod = () => {
   };
 
   const handleCancel = () => {
-    controller.abort();
+    controller?.abort();
+    console.log(controller);
   };
 
   return (
     <div>
-      <Button onClick={() => setTimeout(getPost, 5000)}>Posts</Button>
+      <Button onClick={getPost}>Posts</Button>
       <Button onClick={handleCancel}>キャンセル</Button>
       {resources.map((resource) => (
         <p key={resource.id}>{resource.title}</p>
