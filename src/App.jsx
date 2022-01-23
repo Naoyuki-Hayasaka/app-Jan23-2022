@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import ChildArea from "./ChildArea";
-import Async from "./Async";
+import CancelTokenMethod from "./CancelTokenMethod";
+import AbortControllerMethod from "./AbortControllerMethod";
 import "./App.css";
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       <br />
       <button onClick={onClickOpen}>表示</button>
       <ChildArea open={open} onClickClose={onClickClose} />
-      <Async />
+      {/* <CancelTokenMethod /> */}
+      <AbortControllerMethod />
     </div>
   );
 }

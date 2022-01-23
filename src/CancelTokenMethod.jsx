@@ -6,7 +6,7 @@ import Button from "./components/Button";
 const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
 
-const Async = () => {
+const CancelTokenMethod = () => {
   const [resources, setResources] = useState([]);
   const jsonPlaceHolder = axios.create({
     baseURL: "https://jsonplaceholder.typicode.com"
@@ -23,11 +23,11 @@ const Async = () => {
       );
       setResources(posts.data);
       console.log(resources);
-    } catch (thrown) {
-      if (axios.isCancel(thrown)) {
-        console.log("Request canceled", thrown.message);
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        console.log("Request canceled", error.message);
       } else {
-        console.error(thrown);
+        console.error(error);
       }
     }
   };
@@ -47,4 +47,4 @@ const Async = () => {
   );
 };
 
-export default Async;
+export default CancelTokenMethod;
